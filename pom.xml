@@ -12,7 +12,7 @@
 		<dependency>
 			<groupId>io.netty</groupId>
 			<artifactId>netty-all</artifactId>
-			<version>4.0.28.Final</version>
+			<version>5.0.0.Alpha1</version>
 		</dependency>
 		
 		<dependency>
@@ -211,6 +211,14 @@
 		    <artifactId>slf4j-api</artifactId>
 		    <version>1.6.1</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax/javaee-api -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+			<scope>provided</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>

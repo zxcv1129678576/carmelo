@@ -88,8 +88,6 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
             Response response = servlet.service(request);
             
             ByteBuf responseBuf = Unpooled.wrappedBuffer(response.getContents());
-            
-            
             FullHttpResponse httpResponse = new DefaultFullHttpResponse(HTTP_1_1, OK, responseBuf);
             httpResponse.headers().set(CONTENT_TYPE, "text/plain");
             httpResponse.headers().set(CONTENT_LENGTH, httpResponse.content().readableBytes());
@@ -102,6 +100,7 @@ public class HttpServerHandler extends ChannelInboundHandlerAdapter {
                 ctx.write(httpResponse);
             }
         }
+
     }
 
     @Override

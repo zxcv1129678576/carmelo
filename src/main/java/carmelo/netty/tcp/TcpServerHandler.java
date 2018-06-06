@@ -18,11 +18,14 @@ public class TcpServerHandler extends SimpleChannelInboundHandler<Request> {
 		this.servlet = servlet;
 	}
 
-    @Override
-    public void channelRead0(ChannelHandlerContext ctx, Request request) throws Exception {
-    	Response response = servlet.service(request);
-    	ctx.writeAndFlush(response);
-    }
-
-
+//    @Override
+//    public void channelRead0(ChannelHandlerContext ctx, Request request) throws Exception {
+//    	Response response = servlet.service(request);
+//    	ctx.writeAndFlush(response);
+//    }
+	@Override
+	public void messageReceived(ChannelHandlerContext channelHandlerContext, Request request) throws Exception {
+		Response response = servlet.service(request);
+		channelHandlerContext.writeAndFlush(response);
+	}
 }

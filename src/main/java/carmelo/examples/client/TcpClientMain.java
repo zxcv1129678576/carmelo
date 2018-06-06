@@ -102,7 +102,7 @@ public class TcpClientMain extends Thread{
 
         TcpClientMain client = new TcpClientMain(host, port, firstMessageSize);
         client.start();
-        System.err.println("try typing in following actions and have fun!\nuser!login name=1&password=123\nuser!logout\nuser!reconnect sessionId=2\n");
+        System.err.println("try typing in following actions and have fun!\n user!login name=1&password=123\nuser!logout\nuser!reconnect sessionId=2\n");
         Scanner scanner = new Scanner(System.in);
         while(true){
         	 String line = scanner.nextLine(); 
@@ -118,6 +118,8 @@ public class TcpClientMain extends Thread{
             	 params = sc.next();
              else
             	 params = "";
+            System.out.println("command:"+command);
+            System.out.println("params:"+params);
              client.sendMsg(command, params);
         }
     }

@@ -32,6 +32,7 @@ public class Configuration {
 	public static final String HTTP_PORT = "http.port";
 	
 	public static final String HTTP_PUSH_PORT = "http.push.port";
+	public static final String WS_PORT = "ws.port";
 	
 	/**
 	 * get property

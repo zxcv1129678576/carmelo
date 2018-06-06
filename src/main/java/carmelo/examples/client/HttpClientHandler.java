@@ -42,11 +42,55 @@ public class HttpClientHandler extends SimpleChannelInboundHandler<HttpObject> {
 	}
 	
 	
+//    @Override
+//    public void channelRead0(ChannelHandlerContext ctx, HttpObject msg) throws Exception {
+//
+//        if (msg instanceof HttpResponse) {
+//        	System.out.println("HttpResponse#######################");
+//            HttpResponse response = (HttpResponse) msg;
+//
+//            System.out.println("STATUS: " + response.getStatus());
+//            System.out.println("VERSION: " + response.getProtocolVersion());
+//            System.out.println();
+//
+//            if (!response.headers().isEmpty()) {
+//                for (String name: response.headers().names()) {
+//                    for (String value: response.headers().getAll(name)) {
+//                        System.out.println("HEADER: " + name + " = " + value);
+//                    }
+//                }
+//                System.out.println();
+//            }
+//
+//            if (HttpHeaders.isTransferEncodingChunked(response)) {
+//                System.out.println("CHUNKED CONTENT {");
+//            } else {
+//                System.out.println("CONTENT {111111");
+//            }
+//        }
+//        if (msg instanceof HttpContent) {
+//        	System.out.println("HttpContent#######################");
+//            HttpContent content = (HttpContent) msg;
+//
+//            System.out.print(content.content().toString(CharsetUtil.UTF_8));
+//            System.out.flush();
+//
+//            if (content instanceof LastHttpContent) {
+//                System.out.println("} END OF CONTENT");
+//            }
+//        }
+//    }
+
     @Override
-    public void channelRead0(ChannelHandlerContext ctx, HttpObject msg) throws Exception {
-    	
+    public void exceptionCaught(
+            ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        cause.printStackTrace();
+        ctx.close();
+    }
+    @Override
+    public  void messageReceived(ChannelHandlerContext ctx, HttpObject msg) throws Exception {
         if (msg instanceof HttpResponse) {
-        	System.out.println("HttpResponse#######################");
+            System.out.println("HttpResponse#######################");
             HttpResponse response = (HttpResponse) msg;
 
             System.out.println("STATUS: " + response.getStatus());
@@ -65,11 +109,11 @@ public class HttpClientHandler extends SimpleChannelInboundHandler<HttpObject> {
             if (HttpHeaders.isTransferEncodingChunked(response)) {
                 System.out.println("CHUNKED CONTENT {");
             } else {
-                System.out.println("CONTENT {");
+                System.out.println("CONTENT {111111");
             }
         }
         if (msg instanceof HttpContent) {
-        	System.out.println("HttpContent#######################");
+            System.out.println("HttpContent#######################");
             HttpContent content = (HttpContent) msg;
 
             System.out.print(content.content().toString(CharsetUtil.UTF_8));
@@ -79,12 +123,5 @@ public class HttpClientHandler extends SimpleChannelInboundHandler<HttpObject> {
                 System.out.println("} END OF CONTENT");
             }
         }
-    }
-
-    @Override
-    public void exceptionCaught(
-            ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        cause.printStackTrace();
-        ctx.close();
     }
 }
